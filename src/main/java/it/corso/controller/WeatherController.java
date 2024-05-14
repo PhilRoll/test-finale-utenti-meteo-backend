@@ -63,8 +63,12 @@ public class WeatherController {
 		} catch (Exception e) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
-		
 	}
 	
-
+	
+	
+	
+	
+	
+	
 }
