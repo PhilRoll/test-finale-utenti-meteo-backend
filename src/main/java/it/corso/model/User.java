@@ -10,9 +10,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -39,13 +37,8 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
-	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-	@JoinTable
-	(
-			name = "user_weather", 
-			joinColumns = @JoinColumn(name = "fk_u", referencedColumnName = "id_u"),
-			inverseJoinColumns = @JoinColumn(name = "fk_w", referencedColumnName = "id_w")
-	) 
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<Weather> weatherForecast = new ArrayList<>();
 
 	

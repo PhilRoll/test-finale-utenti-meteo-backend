@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -46,16 +47,10 @@ public class Weather {
 	@Column(name = "wind_average_kmh")
 	private Double windAverageKmh;
 	
-	
 
-	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-	@JoinTable
-	(
-			name = "user_weather", 
-			joinColumns = @JoinColumn(name = "fk_w", referencedColumnName = "id_w"),
-			inverseJoinColumns = @JoinColumn(name = "fk_u", referencedColumnName = "id_u")
-	) 
-	private List<User> users = new ArrayList<>();
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "fk_u", referencedColumnName = "id_u")
+	private User user;
 
 
 
@@ -155,18 +150,17 @@ public class Weather {
 
 
 
-	public List<User> getUsers() {
-		return users;
+	public User getUser() {
+		return user;
 	}
 
 
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 
 
-	
 	
 }

@@ -13,9 +13,7 @@ public class WeatherDto {
 	private Double maxTempCelsius;
 	private Double minTempCelsius;
 	private Double windAverageKmh;
-	List <WeatherUserDto> users;
-	
-	
+	UserDto user;
 	public int getId() {
 		return id;
 	}
@@ -64,12 +62,13 @@ public class WeatherDto {
 	public void setWindAverageKmh(Double windAverageKmh) {
 		this.windAverageKmh = windAverageKmh;
 	}
-	public List<WeatherUserDto> getUsers() {
-		return users;
+	public UserDto getUser() {
+		return user;
 	}
-	public void setUsers(List<WeatherUserDto> users) {
-		this.users = users;
+	public void setUser(UserDto user) {
+		this.user = user;
 	}
+	
 	
 	
 	

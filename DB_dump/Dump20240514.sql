@@ -44,32 +44,6 @@ INSERT INTO `user` VALUES (1,'Filippo','Rotolo','Bagheria','filippo@email.com','
 UNLOCK TABLES;
 
 --
--- Table structure for table `user_weather`
---
-
-DROP TABLE IF EXISTS `user_weather`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user_weather` (
-  `fk_u` int NOT NULL,
-  `fk_w` int NOT NULL,
-  PRIMARY KEY (`fk_u`,`fk_w`),
-  KEY `fk_w` (`fk_w`),
-  CONSTRAINT `user_weather_ibfk_1` FOREIGN KEY (`fk_u`) REFERENCES `user` (`id_u`),
-  CONSTRAINT `user_weather_ibfk_2` FOREIGN KEY (`fk_w`) REFERENCES `weather` (`id_w`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user_weather`
---
-
-LOCK TABLES `user_weather` WRITE;
-/*!40000 ALTER TABLE `user_weather` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_weather` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `weather`
 --
 
@@ -81,12 +55,15 @@ CREATE TABLE `weather` (
   `name` varchar(255) DEFAULT NULL,
   `country` varchar(255) DEFAULT NULL,
   `day` date DEFAULT NULL,
-  `forecast_text` text,
+  `forecast_text` varchar(255) DEFAULT NULL,
   `max_temp_celsius` double DEFAULT NULL,
   `min_temp_celsius` double DEFAULT NULL,
   `wind_average_kmh` double DEFAULT NULL,
-  PRIMARY KEY (`id_w`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `fk_u` int DEFAULT NULL,
+  PRIMARY KEY (`id_w`),
+  KEY `fk_u` (`fk_u`),
+  CONSTRAINT `weather_ibfk_1` FOREIGN KEY (`fk_u`) REFERENCES `user` (`id_u`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,6 +72,7 @@ CREATE TABLE `weather` (
 
 LOCK TABLES `weather` WRITE;
 /*!40000 ALTER TABLE `weather` DISABLE KEYS */;
+INSERT INTO `weather` VALUES (1,'Rivalta di Torino','Italy','2024-05-14','Moderate rain',15,13,3.6,NULL);
 /*!40000 ALTER TABLE `weather` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -107,4 +85,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-14 17:54:10
+-- Dump completed on 2024-05-14 19:48:27
