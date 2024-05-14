@@ -63,7 +63,7 @@ CREATE TABLE `weather` (
   PRIMARY KEY (`id_w`),
   KEY `fk_u` (`fk_u`),
   CONSTRAINT `weather_ibfk_1` FOREIGN KEY (`fk_u`) REFERENCES `user` (`id_u`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `weather` (
 
 LOCK TABLES `weather` WRITE;
 /*!40000 ALTER TABLE `weather` DISABLE KEYS */;
-INSERT INTO `weather` VALUES (1,'Rivalta di Torino','Italy','2024-05-14','Moderate rain',15,13,3.6,NULL);
+INSERT INTO `weather` VALUES (1,'Milano','Italy','2024-05-14','Moderate rain',16,15,14.4,1),(2,'Rom','Italy','2024-05-14','Variable cloudiness',17,16,3.6,1),(3,'Palermo','Italy','2024-05-14','Clear sky',19,18,3.6,1);
 /*!40000 ALTER TABLE `weather` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -85,4 +85,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-14 19:48:27
+-- Dump completed on 2024-05-14 21:32:12
