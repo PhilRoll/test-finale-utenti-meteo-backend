@@ -1,14 +1,10 @@
 package it.corso.service;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.corso.dao.UserDao;
 import it.corso.dao.WeatherDao;
 import it.corso.dto.WeatherDto;
-import it.corso.model.User;
 import it.corso.model.Weather;
 
 @Service
