@@ -84,24 +84,22 @@ public class UserController {
 	
 	
 	private UserLoginResponseDto issueToken(String email) {
-		// Definiamo una chiave segreta (array di byte) necessario poi per la crittografia HMAC
 		byte[] secretKey = "supersecretkeytestfinale123456789101112131415161718192021222324252627282930".getBytes();
-		// Creiamo una chiave per l'algoritmo HMAC
 		Key key = Keys.hmacShaKeyFor(secretKey);
-		// Otteniamo le informazioni dell'utente dal servizio
 		User userInfo = userService.getUserByEmail(email);
-		// Creiamo un insieme di informazioni da includere nel token (claims) [ coppia <"nome", valore> ]
+
 		Map<String, Object> map = new HashMap<>();
 		map.put("name", userInfo.getName());
 		map.put("lastname", userInfo.getLastname());
 		map.put("email", email);
 		map.put("city",  userInfo.getCity());
+		map.put("id",  userInfo.getId());
 		
 		List<String> weatherForecast = new ArrayList<>();
 		userInfo.getWeatherForecast().forEach(weather -> weatherForecast.add(weather.getName()));
 		map.put("weatherForecast", weatherForecast);
 		
-		// Definiamo la data di creazione e il tempo di vita del token
+
 		Instant now = Instant.now();
 		Date creationDate = Date.from(now); 					//data creazione
 		Date end = Date.from(now.plus(60, ChronoUnit.MINUTES)); //TTL di 60min

@@ -28,8 +28,11 @@ public class WeatherController {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response registerWeather(@Valid @RequestBody WeatherDto weatherDto){
 		try {
-			weatherService.registerWeather(weatherDto);
-			return Response.status(Response.Status.OK).build();
+			if(weatherService.registerWeather(weatherDto)) {
+				return Response.status(Response.Status.OK).build();
+			}
+			
+			return Response.status(Response.Status.BAD_REQUEST).build();
 			
 		} catch (Exception e) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
