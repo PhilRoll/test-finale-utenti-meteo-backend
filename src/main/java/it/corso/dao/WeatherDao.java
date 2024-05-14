@@ -6,4 +6,5 @@ import it.corso.model.Weather;
 
 public interface WeatherDao extends CrudRepository<Weather, Integer>{
 	
+	
 }

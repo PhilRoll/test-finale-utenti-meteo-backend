@@ -104,22 +104,22 @@ public class UserController {
 		Date creationDate = Date.from(now); 					//data creazione
 		Date end = Date.from(now.plus(60, ChronoUnit.MINUTES)); //TTL di 60min
 		
-		// Creiamo il token JWT firmato con la chiave segreta
+
 		String jwtToken = Jwts.builder()
-		    .setClaims(map)                     // Impostiamo le informazioni aggiuntive (claims) nel token
-		    .setIssuer("http://localhost:8080") // Indichiamo chi ha emesso il token
-		    .setIssuedAt(creationDate)          // Impostiamo la data di creazione del token
-		    .setExpiration(end)                 // Impostiamo la scadenza del token
-		    .signWith(key)                      // Firmiamo il token con la chiave segreta
-		    .compact();                         // Compattiamo il token in una stringa
+		    .setClaims(map)                     
+		    .setIssuer("http://localhost:8080") 
+		    .setIssuedAt(creationDate)         
+		    .setExpiration(end)                 
+		    .signWith(key)                     
+		    .compact();                         
 
-		// Creiamo un oggetto UtenteLoginResponseDto per contenere il token e altre informazioni
+		
 		UserLoginResponseDto token = new UserLoginResponseDto();
-		token.setToken(jwtToken);                   // Impostiamo il token JWT
-		token.setTokenCreationTime(creationDate);    // Impostiamo il timestamp di creazione del token
-		token.setTtl(end);                          // Impostiamo il tempo di vita del token
+		token.setToken(jwtToken);                
+		token.setTokenCreationTime(creationDate);   
+		token.setTtl(end);                         
 
-		// Restituiamo il token JWT e altre informazioni associate
+
 		return token;
 	}
 
